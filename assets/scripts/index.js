@@ -4,4 +4,18 @@
 // var example = require('./example');
 
 // use require without a reference to ensure a file is bundled
-require('./router/index');
+const initializeRouter = () => {
+    // create router
+    const appRouter = require('./router/index');
+    
+    // configure middleware
+    // useMiddleware should only be called once ever in a single app
+    appRouter.useMiddleware(require('./router/dom').transition);
+
+    appRouter.start();
+};
+
+$(() => {
+    initializeRouter();
+    require('./router/events').registerPaths();
+});

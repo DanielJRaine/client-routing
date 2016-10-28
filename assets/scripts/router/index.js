@@ -12,15 +12,11 @@ const routes = [
 const options = {
   useHash: true,
   hashPrefix: '!',
-  default: '/',
+  defaultRoute: '/',
 };
 
 const router = new Router5(routes, options)
 .usePlugin(loggerPlugin);
-
-$(() => {
-  require('./events').registerPaths();
-});
 
 module.exports = {
   router,
